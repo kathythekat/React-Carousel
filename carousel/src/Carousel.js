@@ -12,18 +12,19 @@ function Carousel(props) {
   const goForward = () => setCardIdx(cardIdx + 1);
   const goBackward = () => setCardIdx(cardIdx - 1);
 
+  //line 21 and 28: if left side is false, will return false, won't evaluate right side
   return (
     <div className="Carousel">
       <h1>{props.title}</h1>
       <div className="Carousel-main">
-        <i className="fas fa-chevron-circle-left fa-2x" onClick={goBackward} />
+        {cardIdx !== 0 && <i className={"fas fa-chevron-circle-left fa-2x"} onClick={goBackward} />}
         <Card
           caption={card.caption}
           src={card.src}
           currNum={cardIdx + 1}
           totalNum={total}
         />
-        <i className="fas fa-chevron-circle-right fa-2x" onClick={goForward} />
+        {cardIdx !== 2 && <i className={"fas fa-chevron-circle-right fa-2x"} onClick={goForward} /> }
       </div>
     </div>
   );
