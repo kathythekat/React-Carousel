@@ -13,12 +13,14 @@ it("matches snapshot", function () {
 
 // end
 
-it("works when you click on the right arrow", function() {
+it("works when you click on the right arrow", function () {
   const { container } = render(<Carousel />);
 
   // expect the first image to show, but not the second
   expect(
-    container.querySelector('img[alt="Photo by Richard Pasquarella on Unsplash"]')
+    container.querySelector(
+      'img[alt="Photo by Richard Pasquarella on Unsplash"]'
+    )
   ).toBeInTheDocument();
   expect(
     container.querySelector('img[alt="Photo by Pratik Patel on Unsplash"]')
@@ -30,9 +32,40 @@ it("works when you click on the right arrow", function() {
 
   // expect the second image to show, but not the first
   expect(
-    container.querySelector('img[alt="Photo by Richard Pasquarella on Unsplash"]')
+    container.querySelector(
+      'img[alt="Photo by Richard Pasquarella on Unsplash"]'
+    )
   ).not.toBeInTheDocument();
   expect(
     container.querySelector('img[alt="Photo by Pratik Patel on Unsplash"]')
+  ).toBeInTheDocument();
+});
+
+it("works when you click on the left arrow", function () {
+  const { container } = render(<Carousel />);
+  const rightArrow = container.querySelector(".fa-chevron-circle-right");
+  fireEvent.click(rightArrow);
+  // expect the first image to show, but not the second
+  expect(
+    container.querySelector('img[alt="Photo by Pratik Patel on Unsplash"]')
+  ).toBeInTheDocument();
+  expect(
+    container.querySelector(
+      'img[alt="Photo by Richard Pasquarella on Unsplash"]'
+    )
+  ).not.toBeInTheDocument();
+
+  // move forward in the carousel
+  const leftArrow = container.querySelector(".fa-chevron-circle-left");
+  fireEvent.click(leftArrow);
+
+  // expect the second image to show, but not the first
+  expect(
+    container.querySelector('img[alt="Photo by Pratik Patel on Unsplash"]')
+  ).not.toBeInTheDocument();
+  expect(
+    container.querySelector(
+      'img[alt="Photo by Richard Pasquarella on Unsplash"]'
+    )
   ).toBeInTheDocument();
 });
