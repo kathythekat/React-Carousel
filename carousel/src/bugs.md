@@ -1,0 +1,2 @@
+- app breaks after 3rd image
+- go forward is the same as backward

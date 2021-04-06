@@ -2,6 +2,17 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 
+it("renders without crashing", function () {
+  render(<Carousel />);
+});
+
+it("matches snapshot", function () {
+  const { container, debug } = render(<Carousel />);
+  expect(container).toMatchSnapshot();
+});
+
+// end
+
 it("works when you click on the right arrow", function() {
   const { container } = render(<Carousel />);
 
